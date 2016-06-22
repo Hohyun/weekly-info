@@ -37,7 +37,7 @@
 
                 :compiler {:main weekly-info.core
                            :asset-path "js/compiled/out"
-                           :output-to "resources/public/js/compiled/weekly_info.js"
+                           :output-to "resources/public/js/weekly_info.js"
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true}}
                ;; This next build is an compressed minified build for
@@ -45,7 +45,7 @@
                ;; lein cljsbuild once min
                {:id "min"
                 :source-paths ["src"]
-                :compiler {:output-to "resources/public/js/compiled/weekly_info.js"
+                :compiler {:output-to "resources/public/js/weekly_info.js"
                            :main weekly-info.core
                            :optimizations :advanced
                            :pretty-print false}}]}
