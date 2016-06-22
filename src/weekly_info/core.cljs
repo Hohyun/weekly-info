@@ -13,8 +13,7 @@
 ;; define your app data so that it doesn't get over-written on reload
 
 (def app-state
-  (atom {:text "Hello world!"
-         :date (js/Date.)
+  (atom {:date "2016-06-12"
          :offerings {:wg 1165160 :wm 50000 :ws 800000 :wt 2004000
                      :mg 1650000 :mm 170000 :ms 900000 :mt 2746000
                      :yg 41540000 :ym 5191000 :ys 1120000 :yt 47851000}}))
@@ -63,6 +62,8 @@
   [:span (cl-format nil "~:d" amount)])
 
 ;; weekly offering info -----------------------------------------------
+(reagent/render-component [:span (get @app-state :date)]
+                          (. js/document (getElementById "asOfDate")))
 (reagent/render-component [offering-info (get-amount :wg)]
                           (. js/document (getElementById "w-general")))
 (reagent/render-component [offering-info (get-amount :mg)]
