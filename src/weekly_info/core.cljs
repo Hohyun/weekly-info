@@ -20,7 +20,7 @@
   {:bindto "#graph1"
    :size {:height 300}
    :data {:x "Date"
-          :url "offering_trend.csv"
+          :url "https://raw.githubusercontent.com/Hohyun/weekly-info/master/offering_trend.csv"
           :type "spline"
           :types {:General "area-spline" :Mission "area-spline" :Special "area-spline"}
           :groups [["General" "Mission" "Special"]]}
@@ -39,7 +39,7 @@
   {:bindto "#graph2"
    :size {:height 280}
    :data {:x "Month"
-          :url "income_spending.csv"
+          :url "https://raw.githubusercontent.com/Hohyun/weekly-info/master/income_spending.csv"
           :type "bar"
           :groups [["Offering"]
                    ["Expense"]
