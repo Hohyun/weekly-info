@@ -8,8 +8,6 @@
 
 (enable-console-print!)
 
-(println "This text is printed from src/iibc-info/core.cljs. Go ahead and edit it and see reloading in action.")
-
 ;; define your app data so that it doesn't get over-written on reload
 
 (def app-state
@@ -22,7 +20,7 @@
   {:bindto "#graph1"
    :size {:height 300}
    :data {:x "Date"
-          :url "offering.csv"
+          :url "offering_trend.csv"
           :type "spline"
           :types {:General "area-spline" :Mission "area-spline" :Special "area-spline"}
           :groups [["General" "Mission" "Special"]]}
@@ -60,34 +58,6 @@
 
 (defn offering-info [amount]
   [:span (cl-format nil "~:d" amount)])
-
-;; weekly offering info -----------------------------------------------
-(reagent/render-component [:span (get @app-state :date)]
-                          (. js/document (getElementById "asOfDate")))
-(reagent/render-component [offering-info (get-amount :wg)]
-                          (. js/document (getElementById "w-general")))
-(reagent/render-component [offering-info (get-amount :mg)]
-                          (. js/document (getElementById "m-general")))
-(reagent/render-component [offering-info (get-amount :yg)]
-                          (. js/document (getElementById "y-general")))
-(reagent/render-component [offering-info (get-amount :wm)]
-                          (. js/document (getElementById "w-mission")))
-(reagent/render-component [offering-info (get-amount :mm)]
-                          (. js/document (getElementById "m-mission")))
-(reagent/render-component [offering-info (get-amount :ym)]
-                          (. js/document (getElementById "y-mission")))
-(reagent/render-component [offering-info (get-amount :ws)]
-                          (. js/document (getElementById "w-special")))
-(reagent/render-component [offering-info (get-amount :ms)]
-                          (. js/document (getElementById "m-special")))
-(reagent/render-component [offering-info (get-amount :ys)]
-                          (. js/document (getElementById "y-special")))
-(reagent/render-component [offering-info (get-amount :wt)]
-                          (. js/document (getElementById "w-total")))
-(reagent/render-component [offering-info (get-amount :mt)]
-                          (. js/document (getElementById "m-total")))
-(reagent/render-component [offering-info (get-amount :yt)]
-                          (. js/document (getElementById "y-total")))
 
 ;; monthly offering trend chart --------------------------------------
 (.generate js/c3 (clj->js c3-offering-trend))
