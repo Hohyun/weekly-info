@@ -1,0 +1,8 @@
+/* some style */
+.offering {
+    display: inline-block;
+    width: 98px;
+    text-align: right;
+    font-size: large;
+}
+
