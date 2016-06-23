@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+      /* Jumbotron.css: Move down content because we have a fixed navbar that is 50px tall */
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+      /* my style */
+      .offering {
+        display: inline-block;
+        width: 98px;
+        text-align: right;
+        font-size: large;
+      }
+
+    </style>
+    <title>IIBC Financial Information Hub</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Inchun Int'l Baptist Church Treasury</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form name="sign-in" action="#" method="post" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input name="password" type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="button" onClick="validate(this.form)" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+     </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>IIBC Weekly Brief</h1>
+        <div class="alert alert-warning">This page is for the purpose of sharing financial informations with church members.  Please handle it as confidential!</div>
+
+    <div class="container">
+      <div id="chart1"></div>
+      <div id="chart2"></div>
+
+      <footer>
+        <p>&copy; 2016 IIBC</p>
+      </footer>
+    </div><!-- end of container -->
+
+    <pre id="mycsv" style="display:none">
+Month,Offering,Expense,Net
+Jan-16,10353000,4495672,5857328
+Feb-16,6019000,13700761,-7681761
+Mar-16,11010000,8902060,2107940
+Apr-16,6333000,4058490,2274510
+May-16,11390000,14182617,-2792617
+Jun-16,0,0,0
+Jul-16,0,0,0
+Aug-16,0,0,0
+Sep-16,0,0,0
+Oct-16,0,0,0
+Nov-16,0,0,0
+Dec-16,0,0,0
+Average,9021000,9067920,-46919
+</pre>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+
+    var options = {
+      chart: {
+        renderTo: 'chart1',
+        defaultSeriesType: 'areaspline',
+        zoomType: 'x'
+      },
+      title: {
+        text: 'Offerings status over time'
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: {
+        title: {
+          text: "Offerings (won)"
+        }
+      },
+      plotOptions: {
+        series: {
+          //pointStart: Date.UTC(2015, 0, 1),
+          //pointIntervalUnit: 'month',
+          marker: {
+            enabled: false
+          }
+        },
+        areaspline: {
+          stacking: 'normal',
+          fillOpacity: 0.5,
+          lineWidth: 1
+        } 
+      },
+      credits: {
+        text: "IIBC Treasury"
+      },
+      tooltip: {
+        shared: true,
+        crosshairs: true
+      },
+      series: []
+    };
+      
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ','
+      }
+    });
+
+    $.get('https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/offering_trend.csv', function(csv) {
+
+      var lines = csv.split('\n');
+        $.each(lines, function(lineNo, line) {
+  
+        var items = line.split(',');
+        var d = new Date(items[0]);
+
+        if (lineNo == 0) {
+          $.each(items, function (itemNo, item) {
+            if (itemNo != 0) {
+              var temp = {
+                name: item,
+                data: []
+              }
+              if (itemNo > 3) {
+                temp.type = 'spline';
+              }
+              options.series.push(temp);
+            }
+          });
+        }
+
+        if (lineNo != 0) {
+          $.each(items, function(itemNo, item) {      
+            if (itemNo != 0) {
+              options.series[itemNo-1].data.push([d.getTime(), parseInt(item)]);
+            }
+          });
+        }
+      });
+
+      var chart = new Highcharts.Chart(options);
+    });
+  });
+  </script>
+  </body>
+</html>
