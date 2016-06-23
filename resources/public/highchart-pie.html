@@ -53,11 +53,32 @@
     <div class="container">
       <div id="chart1"></div>
       <div id="chart2"></div>
+      <div id="chart3"></div>
 
       <footer>
         <p>&copy; 2016 IIBC</p>
       </footer>
     </div><!-- end of container -->
+
+    <pre id="mycsv" style="display:none">
+category,amount,percent
+Rent,31330172,69.1
+Bldg Mgmnt,5674920,12.5
+Moving,1950000,4.3
+Mission,1276667,2.8
+Event,1179000,2.6
+Others,3928,841,8.7
+Printing,816000,
+Church Equipment,684000,
+Advertising,600000,
+Food/Supplies,496170,0.01
+Miscellaneous,380441
+Water/Gas/Oil,346530,
+Benevolences,200000,
+Repair/Decoration,191000,
+Automobile,190000,
+Stationary,50900,
+</pre>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -65,90 +86,82 @@
   <script src="https://code.highcharts.com/modules/data.js"></script>
   <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   <script type="text/javascript">
-  $(document).ready(function() {
-
-    var options = {
-      chart: {
-        renderTo: 'chart1',
-        defaultSeriesType: 'areaspline',
-        zoomType: 'x'
-      },
-      title: {
-        text: 'Offerings status over time'
-      },
-      xAxis: {
-        type: 'datetime'
-      },
-      yAxis: {
-        title: {
-          text: "Offerings (won)"
-        }
-      },
-      plotOptions: {
-        series: {
-          //pointStart: Date.UTC(2015, 0, 1),
-          //pointIntervalUnit: 'month',
-          marker: {
-            enabled: false
-          }
-        },
-        areaspline: {
-          stacking: 'normal',
-          fillOpacity: 0.5,
-          lineWidth: 1
-        } 
-      },
-      credits: {
-        text: "IIBC Treasury"
-      },
-      tooltip: {
-        shared: true,
-        crosshairs: true
-      },
-      series: []
-    };
-      
+   
     Highcharts.setOptions({
       lang: {
         thousandsSep: ','
       }
     });
 
-    $.get('https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/offering_trend.csv', function(csv) {
+    var options = {
+      chart: {
+            renderTo: 'chart3',
+            type: 'pie'
+        },
+        title: {
+            text: 'Expenses by categories'
+        },
+        subtitle: {
+            text: 'Period: Jan \'16 ~ May \'16, Click the slices to view subcategories of others.'
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y:,.0f}'
+                }
+            }
+        },
+        credits: {
+            text: "IIBC Treasury"
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.p:.1f}%</b> of total<br/>'
+        },
+        series: [{
+            name: 'Categories',
+            colorByPoint: true,
+            data: []
+        }],
+        drilldown: {
+            series: [{
+                name: 'Others',
+                id: 'Others',
+                data: []
+            }]
+        }
+    }
+
+    $.get('https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/expense.csv', function(csv) {
 
       var lines = csv.split('\n');
-        $.each(lines, function(lineNo, line) {
+      var drilldown_flag = false;
+      $.each(lines, function(lineNo, line) {
   
-        var items = line.split(',');
-        var d = new Date(items[0]);
-
-        if (lineNo == 0) {
-          $.each(items, function (itemNo, item) {
-            if (itemNo != 0) {
-              var temp = {
-                name: item,
-                data: []
+          var items = line.split(',');
+          //debugger;
+          if (lineNo != 0 && line != "") {
+              if (!drilldown_flag) {
+                  var temp = {
+                      name: items[0],
+                      y: parseInt(items[1]),
+                      p: parseFloat(items[2]) 
+                  };
+                  if (items[0] == 'Others') { 
+                      temp.drilldown = 'Others';
+                      drilldown_flag = true;
+                  }
+                  options.series[0].data.push(temp);
+              } else { 
+                  options.drilldown.series[0].data.push([items[0], parseInt(items[1])]);
               }
-              if (itemNo > 3) {
-                temp.type = 'spline';
-              }
-              options.series.push(temp);
-            }
-          });
-        }
-
-        if (lineNo != 0) {
-          $.each(items, function(itemNo, item) {      
-            if (itemNo != 0) {
-              options.series[itemNo-1].data.push([d.getTime(), parseInt(item)]);
-            }
-          });
-        }
+          }
       });
-
       var chart = new Highcharts.Chart(options);
     });
-  });
+    //debugger;
+    
   </script>
   </body>
 </html>

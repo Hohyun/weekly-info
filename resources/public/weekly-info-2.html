@@ -59,7 +59,7 @@
       </div>
     </div>
 
-  <div class="container">
+<div class="container">
       <!-- Example row of columns -->
       <div id="panel-a" class="panel panel-default">
         <div class="panel-heading">
@@ -118,35 +118,19 @@
          
       <div id="graph1"></div>
       <div id="graph2"></div>
-      <div id="chart1"></div>
-      <div id="chart2"></div>
-      <div id="chart3"></div>
   
       <footer>
         <p>&copy; 2016 IIBC</p>
       </footer>
     </div><!-- end of container -->
+  </div>
 
     <script src="./weekly_info.js" type="text/javascript"></script>
     <script src="./accounting.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/drilldown.js"></script>    
-    
     <script type="text/javascript">
-    function validate(form) {
-      if (form.password.value == "1611") {
-        $("#btn-a, #btn-b, #btn-c").removeClass("disabled");
-        $("#btn-a, #btn-b, #btn-c").addClass("active");
-        $("#panel-a").show(100);
-      } else {
-        alert("Invalid password!");
-      }
-      form.password.value = "";
-    }
-
     $(document).ready(function() {
       // hide panels
       $("#btn-a, #btn-b, #btn-c").addClass("disabled");
@@ -154,6 +138,7 @@
 
       $.getJSON('https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/offering_data.json', function (data) {
         $.each(data, function (key, val) {
+      //  debugger;
         if (key == "date") $("#asOfDate").text(val);
         else if (key == "w-general") $("#w-general").text(accounting.formatNumber(val));
         else if (key == "m-general") $("#m-general").text(accounting.formatNumber(val));
@@ -187,6 +172,16 @@
       });
     })
 
+    function validate(form) {
+      if (form.password.value == "1611") {
+        $("#btn-a, #btn-b, #btn-c").removeClass("disabled");
+        $("#btn-a, #btn-b, #btn-c").addClass("active");
+        $("#panel-a").show(100);
+      } else {
+        alert("Invalid password!");
+      }
+      form.password.value = "";
+    }
     </script>
   </body>
 </html>
