@@ -81,8 +81,7 @@ $(document).ready(function() {
     var options1 = {
         chart: {
             renderTo: 'chart1',
-            defaultSeriesType: 'areaspline',
-            zoomType: 'x'
+            defaultSeriesType: 'areaspline'
         },
         title: {
             text: 'Offerings status over time'
