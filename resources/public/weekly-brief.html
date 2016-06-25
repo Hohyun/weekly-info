@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://raw.githubusercontent.com/Hohyun/weekly-info/master/resources/public/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+      body {
+        padding-top: 15px;
+        padding-bottom: 10px;
+      }
+      h1 {
+        font-family: 'Fondamento', cursive;
+        font-weight: 400;
+      }
+      .thank {
+        font-family: 'Fondamento', cursive;
+      }
+      .offering {
+        display: inline-block;
+        width: 98px;
+        text-align: right;
+        font-size: large;
+      } 
+      .confidential {
+        font-style: italic;
+        font-variant: small-caps;
+        color: gray;
+      }
+    </style>
+    <title>IIBC Financial Information Hub</title>
+  </head>
+  <body>
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">IIBC Treasury</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form name="sign-in" action="#" method="post" class="navbar-form navbar-right">
+            <div class="form-group">
+              <input name="password" type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="button" onClick="validate(this.form)" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+     </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>IIBC Weekly Brief</h1>
+        <p class="thank">Thank you for all faithful servants of the Lord of IIBC.</p>
+          <button id="btn-a" type="button" class="btn btn-primary">weekly offering info</button>
+          <button id="btn-b" type="button" class="btn btn-primary">offering trend</button>
+          <button id="btn-c" type="button" class="btn btn-primary">offering vs expense</button>
+          <button id="btn-d" type="button" class="btn btn-primary">expense details</button>  
+      </div>
+    </div>
+
+  <div class="container">
+
+      <div id="panel-a" class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Offerings: <span id="asOfDate"></span></h2>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3 col-xs-6">
+              <h2><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> General</h2>
+              <p>Tithe, Thanks ...</p>
+              <p>For church operation</p>
+              <h3><div class="label label-primary">
+		  <span class="badge">W</span><span class="offering" id="w-general"></span></div></h3>
+              <h3><div class="label label-success">
+		  <span class="badge">M</span><span class="offering" id="m-general"></span></div></h3>
+              <h3><div class="label label-danger">
+		  <span class="badge">Y</span><span class="offering" id="y-general"></span></div></h3>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <h2><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Mission</h2>
+              <p>Missionary support ...</p>
+              <p>For mission activities</p>
+              <h3><div class="label label-primary">
+		  <span class="badge">W</span><span class="offering" id="w-mission"></span></div></h3>
+              <h3><div class="label label-success">
+		  <span class="badge">M</span><span class="offering" id="m-mission"></span></div></h3>
+              <h3><div class="label label-danger">
+		  <span class="badge">Y</span><span class="offering" id="y-mission"></span></div></h3>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <h2><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Special</h2>
+              <p>Building, Love ...</p>
+              <p>Purpose designated</p>
+              <h3><div class="label label-primary">
+		  <span class="badge">W</span><span class="offering" id="w-special"></span></div></h3>
+              <h3><div class="label label-success">
+		  <span class="badge">M</span><span class="offering" id="m-special"></span></div></h3>
+              <h3><div class="label label-danger">
+		  <span class="badge">Y</span><span class="offering" id="y-special"></span></div></h3>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+              <h2><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Total</h2>
+              <p>All work together!</p>
+              <p>For serving the Lord</p>
+              <h3><div class="label label-primary">
+		  <span class="badge">W</span><span class="offering" id="w-total"></span></div></h3>
+              <h3><div class="label label-success">
+		  <span class="badge">M</span><span class="offering" id="m-total"></span></div></h3>
+              <h3><div class="label label-danger">
+		  <span class="badge">Y</span><span class="offering" id="y-total"></span></div></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+         
+      <div id="chart1"></div>
+      <div id="chart2"></div>
+      <div id="chart3"></div>
+  
+      <footer>
+        <p>&copy; 2016 IIBC <span class="confidential">- Confidential Information - </span></p>
+      </footer>
+    </div><!-- end of container -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>   
+  <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+  <script src="http://www.iibckorea.com/hp_wordpress/wp-content/uploads/2016/06/finance-info.js"></script>   
+  <script src="http://www.iibckorea.com/hp_wordpress/wp-content/uploads/2016/06/accounting.js"></script>
+  </body>
+</html>

@@ -4,12 +4,12 @@
 	"w-mission" : 0,
 	"w-special" : 0,
 	"w-total"   : 1707000,
-	"m-general" : 3385000, 
-	"m-mission" : 170000, 
+	"m-general" : 5495000, 
+	"m-mission" : 270000, 
 	"m-special" : 900000, 
-	"m-total"   : 4455000,
-	"y-general" : 43249000, 
-	"y-mission" : 5191000, 
-	"y-special" : 1120000, 
+	"m-total"   : 6665000,
+	"y-general" : 44809000, 
+	"y-mission" : 2819000, 
+	"y-special" : 1932000, 
 	"y-total"   : 49560000
 }
