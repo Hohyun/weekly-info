@@ -1,15 +1,15 @@
 {
-	"date": "2016-10-30",
-	"w-general" :  2166000,
-	"w-mission" :   158000,
-	"w-special" :        0,
-	"w-total"   :  2324000,
-	"m-general" :  9244000, 
-	"m-mission" :   393000, 
-	"m-special" :  1100000, 
-	"m-total"   : 10737000,
-	"y-general" : 79988158, 
-	"y-mission" :  4443000, 
-	"y-special" :  7102000, 
-	"y-total"   : 91533158
+	"date": "2016-11-06",
+	"w-general" :   840000,
+	"w-mission" :     2000,
+	"w-special" :   335000,
+	"w-total"   :  1177000,
+	"m-general" :   840000, 
+	"m-mission" :     2000, 
+	"m-special" :   335000, 
+	"m-total"   :  1177000,
+	"y-general" : 80828158, 
+	"y-mission" :  4445000, 
+	"y-special" :  7437000, 
+	"y-total"   : 92710158
 }
