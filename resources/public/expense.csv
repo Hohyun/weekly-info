@@ -1,17 +1,16 @@
-category,amount,percent, Period: 2016.1 ~ 2016.11
-Rent,71062172,69.5
-Bldg Mgmnt,12836550,12.6
-Event,5045440,4.9
-Printing,2706600,2.6
-Mission,2275297,2.2
-Church Equipment,2252310,2.2
-Moving,1950000,1.9
-Others,4144298,4.1
-Food/Supplies,1361130
+category,amount,percent, Period: 2016.2 ~ 2017.1
+Rent,79008000,70.3
+Bldg Mgmnt,14155539,12.6
+Event,6165440,5.5
+Printing,3322600,3.0
+Church Equipment,22992310,2.7
+Mission,2082792,1.9
+Others,4650618,4.1
+Food/Supplies,1492340,
+Automobile,903706
 Advertising,680000,
-Water/Gas/Oil,667141,
-Miscellaneous,511981,
-Automobile,348646,
-Repair & Decoration,268000,
+Water/Gas/Oil,654191,
+Miscellaneous,438981,
+Repair & Decoration,197000,
 Benevolences,200000,
-Stationary,107400,
+Stationary,84400,
