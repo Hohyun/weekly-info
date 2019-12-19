@@ -10,11 +10,14 @@ Expenses:Auto,2019-08-01,756290
 Expenses:Auto,2019-09-01,47840
 Expenses:Children,2019-06-01,324448
 Expenses:Compensation,2019-09-01,5790000
+Expenses:Compensation,2019-10-01,-1210000
+Expenses:Compensation,2019-11-01,-1210000
 Expenses:Equipment,2019-04-01,175000
 Expenses:Events,2019-01-01,300000
 Expenses:Events,2019-06-01,220310
 Expenses:Events,2019-08-01,387800
 Expenses:Events,2019-09-01,1569500
+Expenses:Events,2019-10-01,1052546
 Expenses:Food,2019-01-01,363100
 Expenses:Food,2019-02-01,255490
 Expenses:Food,2019-03-01,488150
@@ -24,6 +27,8 @@ Expenses:Food,2019-06-01,353140
 Expenses:Food,2019-07-01,200000
 Expenses:Food,2019-08-01,436884
 Expenses:Food,2019-09-01,261040
+Expenses:Food,2019-10-01,213010
+Expenses:Food,2019-11-01,703928
 Expenses:Management,2019-01-01,996470
 Expenses:Management,2019-02-01,995900
 Expenses:Management,2019-03-01,906440
@@ -33,7 +38,10 @@ Expenses:Management,2019-06-01,905980
 Expenses:Management,2019-07-01,873620
 Expenses:Management,2019-08-01,956350
 Expenses:Management,2019-09-01,959010
+Expenses:Management,2019-10-01,894720
+Expenses:Management,2019-11-01,890130
 Expenses:Miscellaneous,2019-06-01,21900
+Expenses:Miscellaneous,2019-11-01,83020
 Expenses:Mission,2019-01-01,809051
 Expenses:Mission,2019-04-01,1193463
 Expenses:Mission,2019-06-01,3600000
@@ -48,6 +56,8 @@ Expenses:Rent,2019-06-01,4640000
 Expenses:Rent,2019-07-01,4640000
 Expenses:Rent,2019-08-01,4640000
 Expenses:Rent,2019-09-01,4640000
+Expenses:Rent,2019-10-01,4640000
+Expenses:Rent,2019-11-01,4640000
 Expenses:Repair,2019-01-01,100000
 Expenses:Repair,2019-04-01,300000
 Expenses:Repair,2019-07-01,820000
@@ -64,3 +74,5 @@ Expenses:Utility,2019-06-01,26360
 Expenses:Utility,2019-07-01,26450
 Expenses:Utility,2019-08-01,26420
 Expenses:Utility,2019-09-01,26350
+Expenses:Utility,2019-10-01,26350
+Expenses:Utility,2019-11-01,26390
